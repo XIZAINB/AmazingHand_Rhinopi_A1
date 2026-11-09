@@ -1,4 +1,4 @@
-# AmazingHand_A1
+# AmazingHand_Rhinopi_A1
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Qualcomm%20QCM6490%20%7C%20AidLux%20%7C%20Ubuntu%2024.04-orange)](DEPLOY_qcm6490_aidlux.md)
@@ -22,6 +22,36 @@
 > The repo ships the full upstream snapshot under `upstream/` plus a hardened
 > `tools/` layer: serial auto-detection, bus scanning, closed-loop verification,
 > left/right hand selection and a dry-run mode.
+
+---
+
+## 机械手姿势展示
+
+![AmazingHand 手势演示](assets/gestures.gif)
+
+> 以上动图为 **QCM6490 (AidLux) 实机录制**：`python tools/hand_demo.py --loops 0`
+> 连续跑完全部内置手势，全程走 1 Mbps 总线、8 个舵机闭环跟随。
+
+`tools/hand_demo.py` 内置 12 个手势，全部由「中间位 + 偏移量」实时计算：
+
+| 手势 | 效果 | 手势 | 效果 |
+|---|---|---|---|
+| `open_hand` | 五指完全张开 | `nonono` | 食指左右摇摆（摇手指） |
+| `close_hand` | 快速握拳 | `perfect` | 拇指与食指相扣（OK / 点赞） |
+| `open_hand_progressive` | 逐指渐进张开 | `victory` | 剪刀手 / V 字 |
+| `spread_hand` | 手指向两侧铺开 | `scissors` | 剪刀手连续开合 |
+| `clench_hand` | 用力攥握 | `pinched` | 拇指与指尖捏合 |
+| `index_pointing` | 仅伸出食指 | `rock_sign` | 摇滚手势（食指 + 小指） |
+
+复现方式：
+
+```bash
+python tools/hand_demo.py --side right   # 右手；左手用 --side left
+python tools/hand_demo.py --loops 0       # 无限循环
+```
+
+> 手势方向依赖正确的中间位与 `--side` 设置，换手或未标定时手指会偏斜，
+> 参见下文 [标定](#标定)。
 
 ---
 
@@ -80,8 +110,8 @@
 ### 1. 克隆与安装依赖
 
 ```bash
-git clone https://github.com/XIZAINB/AmazingHand_A1.git
-cd AmazingHand_A1
+git clone https://github.com/XIZAINB/AmazingHand_Rhinopi_A1.git
+cd AmazingHand_Rhinopi_A1
 
 python3 -m venv .venv
 source .venv/bin/activate
@@ -148,12 +178,13 @@ python tools/verify_closed_loop.py /dev/ttyUSB0
 ## 目录结构
 
 ```
-AmazingHand_A1/
+AmazingHand_Rhinopi_A1/
 ├── README.md                    本文件
 ├── README.en.md                英文版
 ├── DEPLOY_qcm6490_aidlux.md     QCM6490 / AidLux 实机部署指南（验证数据、接线、排障）
 ├── LICENSE                      Apache 2.0 全文
 ├── NOTICE                       上游归属声明（Apache 2.0 §4d 要求）
+├── assets/gestures.gif          手势演示动图（QCM6490 实机录制）
 │
 ├── upstream/AmazingHand-main/   上游 Pollen Robotics 原始快照
 │   ├── PythonExample/           官方 Python 示例（串口写死 COM11）

@@ -84,8 +84,8 @@ ls /dev/serial/by-id/
 
 ```bash
 cd ~
-git clone https://github.com/XIZAINB/AmazingHand_A1.git
-cd AmazingHand_A1
+git clone https://github.com/XIZAINB/AmazingHand_Rhinopi_A1.git
+cd AmazingHand_Rhinopi_A1
 ```
 
 仓库分两部分：
@@ -95,7 +95,7 @@ cd AmazingHand_A1
 | `upstream/AmazingHand-main/` | 上游 Pollen Robotics 原始资料快照（CAD / 固件 / 官方示例 / 装配文档） |
 | `tools/` | 本仓库为 QCM6490 (AidLux) 板卡适配的可运行工具 |
 
-下文所有命令均在**仓库根目录** `~/AmazingHand_A1` 下执行。
+下文所有命令均在**仓库根目录** `~/AmazingHand_Rhinopi_A1` 下执行。
 
 ### 4.2 创建虚拟环境
 
@@ -129,7 +129,7 @@ Successfully installed rustypot-1.13.1
 ## 5. 冒烟测试：扫描舵机总线
 
 ```bash
-cd ~/AmazingHand_A1
+cd ~/AmazingHand_Rhinopi_A1
 .venv/bin/python tools/scan_bus.py /dev/ttyUSB0 1000000
 ```
 
@@ -167,7 +167,7 @@ cd ~/AmazingHand_A1
 ## 6. 运行手势 Demo
 
 ```bash
-cd ~/AmazingHand_A1
+cd ~/AmazingHand_Rhinopi_A1
 
 # ① 先做离线校验（不接硬件，只打印每帧目标角度）
 .venv/bin/python tools/hand_demo.py --dry-run --loops 1
@@ -183,8 +183,8 @@ cd ~/AmazingHand_A1
 
 ```bash
 cd ~
-git clone https://github.com/XIZAINB/AmazingHand_A1.git
-cd AmazingHand_A1
+git clone https://github.com/XIZAINB/AmazingHand_Rhinopi_A1.git
+cd AmazingHand_Rhinopi_A1
 python3 -m venv .venv --system-site-packages
 .venv/bin/pip install -q --upgrade pip
 .venv/bin/pip install -i https://pypi.tuna.tsinghua.edu.cn/simple rustypot numpy
@@ -238,7 +238,7 @@ python3 -m venv .venv --system-site-packages
 确认机械结构装配到位后，跑一次闭环验证——下发 `open_hand` 姿态，等待 1.5 s 后回读实际位置，逐 ID 打印误差：
 
 ```bash
-cd ~/AmazingHand_A1
+cd ~/AmazingHand_Rhinopi_A1
 .venv/bin/python tools/verify_closed_loop.py
 ```
 
@@ -277,8 +277,8 @@ After=multi-user.target
 [Service]
 Type=simple
 User=aidlux
-WorkingDirectory=/home/aidlux/AmazingHand_A1
-ExecStart=/home/aidlux/AmazingHand_A1/.venv/bin/python /home/aidlux/AmazingHand_A1/tools/hand_demo.py --port /dev/ttyUSB0 --side right --loops 0
+WorkingDirectory=/home/aidlux/AmazingHand_Rhinopi_A1
+ExecStart=/home/aidlux/AmazingHand_Rhinopi_A1/.venv/bin/python /home/aidlux/AmazingHand_Rhinopi_A1/tools/hand_demo.py --port /dev/ttyUSB0 --side right --loops 0
 Restart=on-failure
 RestartSec=3
 
@@ -332,7 +332,7 @@ journalctl -u amazinghand.service -f          # 查看实时日志
 ## 12. 仓库目录与文件清单
 
 ```
-~/AmazingHand_A1/
+~/AmazingHand_Rhinopi_A1/
 ├── README.md                        # 项目总览
 ├── DEPLOY_qcm6490_aidlux.md         # 本文——QCM6490 / AidLux 实机部署指南
 ├── LICENSE                          # Apache 2.0

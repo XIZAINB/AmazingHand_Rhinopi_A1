@@ -13,7 +13,7 @@
 ### AidLux Rhino Pi A1 / Ubuntu
 
 ```bash
-cd AmazingHand_A1
+cd AmazingHand_Rhinopi_A1
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r tools/requirements.txt

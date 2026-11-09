@@ -1,4 +1,4 @@
-# AmazingHand_A1
+# AmazingHand_Rhinopi_A1
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Qualcomm%20QCM6490%20%7C%20AidLux%20%7C%20Ubuntu%2024.04-orange)](DEPLOY_qcm6490_aidlux.md)
@@ -17,6 +17,38 @@ The repository is split into two parts:
 |---|---|
 | `upstream/AmazingHand-main/` | Full snapshot of the upstream Pollen Robotics project (CAD / STL / firmware / official examples / assembly docs / MuJoCo simulation) |
 | `tools/` | The runnable adaptation layer for the QCM6490 (AidLux) board, validated on real hardware |
+
+---
+
+## Gesture showcase
+
+![AmazingHand gesture demo](assets/gestures.gif)
+
+> The animation above was **recorded on the real QCM6490 (AidLux) board**:
+> `python tools/hand_demo.py --loops 0` plays the full built-in sequence over the
+> 1 Mbps servo bus, with all 8 servos closed-loop tracking.
+
+`tools/hand_demo.py` ships 12 gestures, all computed on the fly as
+“middle position + offset”:
+
+| Gesture | Motion | Gesture | Motion |
+|---|---|---|---|
+| `open_hand` | All fingers fully extended | `nonono` | Index finger waving side to side |
+| `close_hand` | Fast fist clench | `perfect` | Thumb meets index (OK / thumbs-up) |
+| `open_hand_progressive` | Fingers extend one by one | `victory` | V sign |
+| `spread_hand` | Fingers fanned out sideways | `scissors` | V sign opening and closing |
+| `clench_hand` | Firm grasp | `pinched` | Thumb–fingertip pinch |
+| `index_pointing` | Only the index extended | `rock_sign` | Rock sign (index + pinky) |
+
+Reproduce it with:
+
+```bash
+python tools/hand_demo.py --side right   # right hand; use --side left for the left hand
+python tools/hand_demo.py --loops 0       # loop forever
+```
+
+> Gesture direction depends on a correct middle position and the right `--side`;
+> on an uncalibrated hand the fingers will skew. See [Calibration](#calibration).
 
 ---
 
@@ -77,8 +109,8 @@ Servo ID ↔ finger mapping (two servos per finger; the `MiddlePos` index is `id
 ### 1. Clone and install dependencies
 
 ```bash
-git clone https://github.com/XIZAINB/AmazingHand_A1.git
-cd AmazingHand_A1
+git clone https://github.com/XIZAINB/AmazingHand_Rhinopi_A1.git
+cd AmazingHand_Rhinopi_A1
 
 python3 -m venv .venv
 source .venv/bin/activate
@@ -147,12 +179,13 @@ Full parameter reference and Windows usage: **[tools/README.en.md](tools/README.
 ## Repository layout
 
 ```
-AmazingHand_A1/
+AmazingHand_Rhinopi_A1/
 ├── README.md                    Simplified Chinese readme
 ├── README.en.md                 This file
 ├── DEPLOY_qcm6490_aidlux.md     On-device deployment guide (Chinese; measured data, wiring, troubleshooting)
 ├── LICENSE                      Full Apache 2.0 text
 ├── NOTICE                       Upstream attribution (required by Apache 2.0 §4d)
+├── assets/gestures.gif          Gesture demo animation (recorded on real QCM6490)
 │
 ├── upstream/AmazingHand-main/   Upstream Pollen Robotics snapshot
 │   ├── PythonExample/           Official Python examples (hard-coded COM11)
