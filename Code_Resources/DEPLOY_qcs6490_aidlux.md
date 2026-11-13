@@ -1,4 +1,4 @@
-# AmazingHand 在 Qualcomm QCM6490 (AidLux) 板卡上的部署指南
+# AmazingHand 在 RhinoPi A1板卡上的部署指南
 
 > 本文档基于**实机验证**结果编写，所有命令均已在目标板卡上执行通过。
 > 目标：在板卡上通过 USB-TTL（CH340）驱动 Amazing Hand 的 8 个 Feetech SCS0009 舵机，并运行基础手势 Demo。
@@ -9,7 +9,7 @@
 
 | 项目 | 实测值 |
 |---|---|
-| 板卡 | Qualcomm Technologies QCM6490 IDP（`qcm6490-addons IDP platform`） |
+| 板卡 | Qualcomm Technologies QCS6490 IDP（`qcs6490-addons IDP platform`） |
 | 操作系统 | AidLux / Ubuntu 24.04.3 LTS (Noble) |
 | 内核 | `6.6.65-qli-1.4-ver.1.1-04093` aarch64 |
 | CPU / 内存 | 8 核 / 7.2 GiB |
@@ -93,7 +93,7 @@ cd AmazingHand_Rhinopi_A1
 | 目录 | 内容 |
 |---|---|
 | `upstream/AmazingHand-main/` | 上游 Pollen Robotics 原始资料快照（CAD / 固件 / 官方示例 / 装配文档） |
-| `tools/` | 本仓库为 QCM6490 (AidLux) 板卡适配的可运行工具 |
+| `tools/` | 本仓库为 QCS6490 (AidLux) 板卡适配的可运行工具 |
 
 下文所有命令均在**仓库根目录** `~/AmazingHand_Rhinopi_A1` 下执行。
 
@@ -334,7 +334,7 @@ journalctl -u amazinghand.service -f          # 查看实时日志
 ```
 ~/AmazingHand_Rhinopi_A1/
 ├── README.md                        # 项目总览
-├── DEPLOY_qcm6490_aidlux.md         # 本文——QCM6490 / AidLux 实机部署指南
+├── DEPLOY_qcs6490_aidlux.md         # 本文——QCS6490 / AidLux 实机部署指南
 ├── LICENSE                          # Apache 2.0
 ├── NOTICE                           # 上游归属声明
 ├── .venv/                           # 虚拟环境（rustypot 1.13.1 + numpy）
@@ -346,7 +346,7 @@ journalctl -u amazinghand.service -f          # 查看实时日志
 │   ├── cad/                         #   STEP / STL 打印件
 │   └── docs/                        #   装配文档与 PDF
 │
-└── tools/                           # 本仓库适配层（在 QCM6490 上验证通过）
+└── tools/                           # 本仓库适配层（在 QCS6490 上验证通过）
     ├── scan_bus.py                  #   总线扫描：位置 / 电压 / 温度 / 力矩
     ├── hand_demo.py                 #   可用化 demo：自动找口 / --side / --dry-run
     ├── verify_closed_loop.py        #   闭环验证：下发姿态并回读比对误差

@@ -83,7 +83,7 @@ USB-SERIAL CH340 (COM21)        <- ✅ 转接板就是这个
 
 | 脚本 | 用途 |
 |---|---|
-| `scan_bus.py` | 指定单个端口，输出位置/电压/温度/力矩表格（QCM6490 实机验证用） |
+| `scan_bus.py` | 指定单个端口，输出位置/电压/温度/力矩表格（QCS6490 实机验证用） |
 | `probe_servos.py` | 遍历所有候选端口逐个试，自动找出哪个口上挂有舵机 |
 
 ### scan_bus.py
@@ -175,7 +175,7 @@ python verify_closed_loop.py COM21               # Windows
 结论: 闭环正常，舵机已跟随目标位
 ```
 
-误差阈值 5°，超过说明该手指机械传动或供电有问题。QCM6490 实机测得 8 个舵机均 **< 1.4°**。
+误差阈值 5°，超过说明该手指机械传动或供电有问题。QCS6490 实机测得 8 个舵机均 **< 1.4°**。
 
 ## 7. 舵机 ID 分配
 
@@ -231,6 +231,6 @@ python verify_closed_loop.py COM21               # Windows
 | `watch_usb.sh` | **仅 Linux** 使用，监听 USB 设备插拔变化。Windows 下用第 3 节的命令代替 |
 
 > 完整实机部署流程（含软硬件实测数据、接线、systemd 开机自启）见仓库根目录的
-> [`DEPLOY_qcm6490_aidlux.md`](../DEPLOY_qcm6490_aidlux.md)。
+> [`DEPLOY_qcs6490_aidlux.md`](../DEPLOY_qcs6490_aidlux.md)。
 
 > The English version of this document is [`README.en.md`](README.en.md).

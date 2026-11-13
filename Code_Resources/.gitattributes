@@ -1,0 +1,25 @@
+# 统一换行符：仓库内一律存 LF，避免 Windows 检出后 bash 脚本在 Linux 上
+# 报 "bad interpreter: /usr/bin/env bash^M"
+* text=auto eol=lf
+
+# 明确指定必须为 LF 的类型
+*.sh    text eol=lf
+*.py    text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+LICENSE text eol=lf
+NOTICE  text eol=lf
+
+# 二进制文件不做换行转换
+*.step  binary
+*.stp   binary
+*.stl   binary
+*.part  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.mp4   binary
+*.pdf   binary
+*.whl   binary
+*.zip   binary

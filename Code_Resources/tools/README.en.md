@@ -88,7 +88,7 @@ Two tools with different purposes:
 
 | Script | Purpose |
 |---|---|
-| `scan_bus.py` | Scan one specific port and print a position / voltage / temperature / torque table (used for the QCM6490 on-device validation) |
+| `scan_bus.py` | Scan one specific port and print a position / voltage / temperature / torque table (used for the QCS6490 on-device validation) |
 | `probe_servos.py` | Try every candidate port and find which one has servos attached |
 
 ### scan_bus.py
@@ -182,7 +182,7 @@ Conclusion: closed loop OK, servos reached the target positions
 ```
 
 The threshold is 5°; exceeding it points to a mechanical linkage or power-supply problem on
-that finger. On the QCM6490 all 8 servos measured **< 1.4°**.
+that finger. On the QCS6490 all 8 servos measured **< 1.4°**.
 
 ## 7. Servo ID assignment
 
@@ -240,5 +240,5 @@ Once calibrated, verify with `--middle-pos`, then write the values into `DEFAULT
 | `watch_usb.sh` | **Linux only** — watches USB device plug/unplug events. On Windows use the command in section 3 |
 
 > The full on-device deployment procedure (measured environment data, wiring, systemd
-> autostart) is in [`DEPLOY_qcm6490_aidlux.md`](../DEPLOY_qcm6490_aidlux.md) at the repository
+> autostart) is in [`DEPLOY_qcs6490_aidlux.md`](../DEPLOY_qcs6490_aidlux.md) at the repository
 > root — currently written in Chinese.

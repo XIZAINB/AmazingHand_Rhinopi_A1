@@ -50,6 +50,6 @@ Original work in this repository
   tools/watch_usb.sh         USB device hotplug watcher (Linux)
   tools/README.md            Deployment notes
   tools/requirements.txt     Python dependencies
-  DEPLOY_qcm6490_aidlux.md   Qualcomm QCM6490 / AidLux deployment guide
+  DEPLOY_qcs6490_aidlux.md   Qualcomm QCS6490 / AidLux deployment guide
 
   All files above are licensed under the Apache License 2.0.
